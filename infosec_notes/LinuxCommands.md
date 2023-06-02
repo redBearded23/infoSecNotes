@@ -22,7 +22,7 @@ printenv
 # Set new environment variable
 export ANT_HOME=/usr/local/apache-ant-1.10.13
 
-# neuen Eintrag in PATH-Variable hinten anhängen
+# Add new entry to PATH variable
 export PATH=${PATH}:${ANT_HOME}bin
 ```
 
