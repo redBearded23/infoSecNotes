@@ -29,9 +29,9 @@ export PATH=${PATH}:${ANT_HOME}bin
 ## Check file hashes for software/data integrity
 
 ```bash
-  md5sum <filename>
-  sha1sum <filename>
-  sha256sum <filename>
+md5sum <filename>
+sha1sum <filename>
+sha256sum <filename>
 ```
 
 ## Get Linux Version
