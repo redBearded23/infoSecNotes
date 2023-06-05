@@ -16,6 +16,11 @@
 ## General Information
 
 - Context: a way of relating a set of URLs together --> most commonly represents a web application (or a subset of it)
+- Symbols in the lower panel:
+
+  ![ZapSymbollsLowerPanelLeft](img/2023-06-05-19-14-18.png)
+
+  ![ZapSymbollsLowerPanelLeft](img/2023-06-05-19-19-29.png)
 
 ## Pentest WebApps using ZAP - Best Practice Step-By-Step
 
@@ -69,3 +74,9 @@
     - easiest way to use it is with HTMLUnit
     - To install HTML Unit use the command `sudo apt install libjenkins-htmlunit-core-js-java`
     - then select HtmlUnity from the Ajax Spider Dropdown
+    - Ajax-Spidering with authentication:
+      1. Identify the session cookie (if not identified by default, look at the params Tab and flag a Cookie as Session Token)
+      2. then do some Browsing with that session token to browse the application with a valid session cookie
+      3. Set an active session from the Http Sessions tab
+      4. identify and exclude the Log Off rquest from the spider (and scanner, and proxy, if required)
+      5. then we can Ajax-Spider the web app with a valid authentication cookie
