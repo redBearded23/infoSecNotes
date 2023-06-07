@@ -19,7 +19,7 @@
 - user will supply email and a service
 - through a series of steps SMTP will deliver it to recipients inbox
 - so SMTP picks up the email and sends it to the recipients server which then directs it to recipient
-  ![way OfAnEmail](../markdownImages/2023-06-07-17-48-47.png)
+  ![way OfAnEmail](/img/2023-06-07-17-48-47.png)
 - Simplified Step-By-Step Process:
 
   1. Mail user agent (email client or an external program) connects to SMTP server of your domain, e.g. smtp.google.com, which initiates the SMTP handshake and the session starts; connection works over **SMTP-Port 25**
@@ -29,7 +29,7 @@
   5. on the other side, the SMTP-Server will verify incoming mail and after checking domain and username it will forward email to the POP or IMAP server
   6. Mail will then show up in recipients inbox
 
-  ![StepByStpProcess](../markdownImages/2023-06-07-19-42-37.png)
+  ![StepByStpProcess](/img/2023-06-07-19-42-37.png)
 
 ## Enumeration/Exploitation
 
