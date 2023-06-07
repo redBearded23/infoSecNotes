@@ -44,4 +44,19 @@
     cd /tmp/mymount
   ```
 
--
+## Exploiting
+
+- if you have low privilege shell on machine and you found NFS share on this machine you might be able to use that to escalate privileges
+- Root-Squashing:
+  - by default enabled on NFS shares
+  - prevents anyone connecting to the share from having root access to the NFS volume
+  - remote root users are assigned a user "nfsnobody" when connected --> has the least local privileges
+  - if root squashing is turned off, it can allow the creation of SUID bit files allowing a remote user root access to the connected system
+- Exploit Step-By-Step:
+  `    NFS Access ->
+          Gain Low Privilege Shell ->
+              Upload Bash Executable to the NFS share ->
+                  Set SUID Permissions Through NFS Due To Misconfigured Root Squash ->
+                      Login through SSH ->
+                          Execute SUID Bit Bash Executable ->
+                              ROOT ACCESS`
