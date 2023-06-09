@@ -3,7 +3,7 @@
 - SMB = Server Message Block Protocol
 - Ports: 139, 445
 
-  ![smbPorts](../markdownImages/2023-06-07-21-55-22.png)
+  ![smbPorts](img/2023-06-07-21-55-22.png)
 
 - client-server communication protocol used for sharing access to files, printers, serial ports and other resources on a network
 - response-request protocol:
