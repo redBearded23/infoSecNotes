@@ -2,6 +2,9 @@
 
 - SMB = Server Message Block Protocol
 - Ports: 139, 445
+
+  ![smbPorts](../markdownImages/2023-06-07-21-55-22.png)
+
 - client-server communication protocol used for sharing access to files, printers, serial ports and other resources on a network
 - response-request protocol:
   - transmits multiple messages between the client and server to establish a connection
@@ -31,3 +34,5 @@
     | -P | get password policy information |
     | -G | get group and member list |
     | -a | all of the above (full basic enumeration) |
+
+- Examples to enumerate SMB shares and users: `nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse 10.10.236.209`
