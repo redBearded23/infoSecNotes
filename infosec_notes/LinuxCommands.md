@@ -77,6 +77,8 @@ lsb_release -a
   find / -user root -perm -4000 -exec ls -ldb {} \;
   # ...or...
   find / -perm -u=s -type f 2>/dev/null
+  # ...or...
+  find / -user root -perm /4000
   ```
 
 - to add SUID bit to a file: `sudo chmod +s bash` (this may be helpful when exploiting e.g. NFS)
