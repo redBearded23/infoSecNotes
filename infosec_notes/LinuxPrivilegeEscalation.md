@@ -7,7 +7,8 @@
 
 ### Step 1: Manual Enumeration
 
-- `hostname` : get hostname of target machine (maybe it has valuable information in name)- `uname -a` : print detailed system information about kernel --> useful for finding kernel vulnerabilities
+- `hostname` : get hostname of target machine (maybe it has valuable information in name)
+- - `uname -a` : print detailed system information about kernel --> useful for finding kernel vulnerabilities
 - `proc/version` : proc filesystem provides info about target system processes; may give information on kernel version and additional info (compiler etc.)
 - `/etc/issue` : systems can also be identified by looking at this file; usually contains info about OS
 - `ps` : running processes with some information about them
