@@ -16,7 +16,9 @@
   - `ps axjf` : view process tree
   - `ps aux` : processes for all users (a), displays user that launched the process (u)and shows processes that are not attached to a terminal (x)
 - `env` : show environmental variables
-- `sudo -l` : target system may be configured to run some commands with root privs; this command lists all commands the logged in user can run using sudo
+- `sudo -l` : target system may be configured to run some commands with root privs; this command lists all commands the logged in user can run with root privileges
+  - sometimes like this you'll find that you're able to **run certain commands as root without the root password**
+  - with a misconfigured binary like this we can try to exploit them with `GTFOBins` (Unix binaries that can be exploited by attacker to bypass local security restriction) --> <https://gtfobins.github.io/>
 - `ls -la` : no comment necessary
 - `id` : provides general overview of user's privilege and group memberships; **can also be used to obtain same information for another user**
 - `/etc/passwd` : see further down
@@ -60,13 +62,16 @@
   - <https://github.com/diego-treitos/linux-smart-enumeration>
   - <https://github.com/linted/linuxprivchecker>
 
-### Step 3: `sudo -l`
+### Step 3: Look for Kernel Exploits
 
-- use `sudo -l` to list what commands you are able to use as a super user on that account
-- sometimes like this you'll find that you're able to **run certain commands as root without the root password**
-- with a misconfigured binary like this we can try to explain them with `GTFOBins` (Unix binaries that can be exploited by attacker to bypass local security restriction) --> <https://gtfobins.github.io/>
+- Linux-Kernel manages communication between components such as memory on the system and applications --> requires kernel to have specific privileges and thus a successful exploit will potentially lead to root privileges
+- Methodology:
+  - Identify Kernel version
+  - search/find exploit code for kernel version of target system (e.g.: <https://www.linuxkernelcves.com/cves>, exploit-db, Google etc.)
+    - there are also tools like: `LES (Linux Exploit Suggester)`
+  - run exploit
 
-### Step 4: check for files with SUID/GUID bit set
+### Step 3: check for files with SUID/GUID bit set
 
 - special type file permission which allows file to run with permissions of whoever the owner is --> if it is root: **BINGO**
   - files can be run with permissions of the files owner/group
