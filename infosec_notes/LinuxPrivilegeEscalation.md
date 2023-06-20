@@ -88,6 +88,19 @@
     - `-u=s` any of the permission bits mode are set for the files
     - `-type f` only search filge
     - `2>/dev/null` suppress errors
+  - alternative: `find / -type f -perm -04000 -ls 2>/dev/null`
+- a good practice would be to compare executables on this list with GTFOBins
+
+### Step: Capabilities
+
+- another method to increase privilege level of a process or binary: Capabilities
+- help manage privileges at more granular level for binary or process
+- `getcap`: List enabled capabilities
+  - when run as unprivileged user, `getcap -r /` will generate huge amount of errors
+  - better to redirect them to `/dev/null`: `getcap -r / 2>/dev/null`
+- GTFOBins has good list of binaries that can be leveraged for priv esc if we find any set capabilities
+
+./vim -c ':py3 import os; os.setuid(0); os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
 
 ### Step 5: can we read/write sensitive files?
 
@@ -129,8 +142,10 @@
 ### Step 6: Cron
 
 - what cronjobs are active: `cat /etc/crontab`
-- how to exploit:
-  - look for cronjobs oder files that are being invoked by cronjob that are owned by root and if they are writable
+- usually cron jobs run with privilege of their owner and not the current user
+- exploit is simple:
+  - if there is scheduled task that runs with root privileges and we can change script that will be run then our script will run with root privs
+  - look for cronjobs or files that are being invoked by cronjob that are owned by root and if they are writable
   - create command that will return a shell and paste it in the file
   - when the file is executed again the script is run as root
 
