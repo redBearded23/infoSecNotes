@@ -47,6 +47,8 @@
   | `find / -amin -60` | find files accesses within the last hour (60 minutes) |
   | `find / -size 50M` | find files with a 50 MB size |
   | `find / -writable -type d 2>/dev/null` | Find world-writeable folders|
+  | `find / -writable -type d 2>/dev/null | cut -d "/" -f 2 | sort -u` | Find world-writeable folders and cut and sort|
+  | `find / -writable 2>/dev/null | cut -d "/" -f 2,3 | grep -v proc | sort -u` | |
   | `find / -perm -222 -type d 2>/dev/null` | Find world-writeable folders|
   | `find / -perm -o w -type d 2>/dev/null` | Find world-writeable folders|
   | `find / -name perl\*` | Perl?? |
@@ -101,6 +103,16 @@
 - GTFOBins has good list of binaries that can be leveraged for priv esc if we find any set capabilities
 
 ./vim -c ':py3 import os; os.setuid(0); os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
+
+### Step: Privilege Escalation via PATH
+
+- if folder for which my user has write permission is located in the PATH, it could potentially hijack an application to run a script
+- questions to ask:
+  - what folders are located under $PATH?
+  - does my current user have write privileges for any of these folders?
+  - can I modify $PATH?
+  - is there a script/application I can start that will be affected by this vulnerability?
+- add path to $PATH: `export PATH=/tmp:$PATH`
 
 ### Step 5: can we read/write sensitive files?
 
