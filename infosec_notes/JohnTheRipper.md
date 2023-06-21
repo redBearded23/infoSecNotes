@@ -69,8 +69,33 @@
   - `unshadow <pathtopasswdfile> <pathtoshadowfile>`
   - Example: `unshadow /etc/passwd /etc/shadow > unshadowed.txt`
 - then feed output from unshadow directly into John:
+
   ```bash
-  john --wordlist=/usr/share/wordlists/rockyout.txt --format=sha512crypt unshadowed.txt
+  john --wordlist=/usr/share/wordlists/rockyou.txt --format=sha512crypt unshadowed.txt
   #Example
-  john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
+  john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.txt unshadow.txt
+  ```
+
+## Single Crack Mode
+
+- in this mode John uses only information provided in the username to try and work out possible passwords heuristically by slightly changing letters and numbers contained within the username --> this is called `Word Mangling`
+- therefore different **mangling rules**:
+- if cracking hashes in single crack mode we need to change file format that we're feeding for John to understand the data to create a wordlist from
+
+  - we do this by prepending the hash with the username that hash belongs to:
+
+  ```bash
+    # Before
+    1efee03cdcb96d90ad48ccc7b8666033
+    # After
+    mike:1efee03cdcb96d90ad48ccc7b8666033
+  ```
+
+- using Single Crack Mode:
+
+  ```bash
+    # Basic Syntax
+    john --single --format=[format] [pathtofile]
+    # Example:
+    john --single --format=raw-sha256 hashes.txt
   ```
