@@ -41,10 +41,11 @@
 
 - other tools to identify hashes, if John isn't able for himself
   - online hash identifiers for example: <https://hashes.com/en/tools/hash_identifier>
-  - this can also be downloaded and used as python script:
+  - in Kali: hash-identifier --> `hash-identifier <hash>` or with piping: `cat hash.txt | hash-identifier`
+  - hash-id: this can also be downloaded and used as python script:
     - `wget https://gitlab.com/kalilinux/packages/hash-identifier/-/raw/kali/master/hash-id.py`
     - `python3 hash-id.py`
-  -
+  - a more modern and powerful alternative to hash-identifer is a tool called haiti: `https://github.com/noraj/haiti`
 
 ## Cracking Windows Hashes
 
@@ -98,4 +99,17 @@
     john --single --format=[format] [pathtofile]
     # Example:
     john --single --format=raw-sha256 hashes.txt
+  ```
+
+## Crack encrypted files using John
+
+- if we don't have the password or key to decrypt a file
+- `gpg2john`: binary that allows to convert gpg file into hash string that john the ripper can understand
+- Example:
+  ```bash
+    # Create hash for John
+    gpg2john secret.txt.gpg > hash.txt
+    # crack the hash
+    john --wordlist=[location/name of wordlist] --format=gpg [name of hash we just created]
+    john --wordlist=rockyou.txt --format=gpg hash.txt
   ```
